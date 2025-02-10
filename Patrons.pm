@@ -370,6 +370,7 @@ sub search_patrons_to_update_category {
             $search_params->{dateofbirth}{'>'} = $dtf->format_datetime( $date_after );
         }
         if( $cat_from->upperagelimit && $params->{too_old} ) {
+            $cat_from->upperagelimit($cat_from->upperagelimit() + 1);
             my $date_before = dt_from_string()->subtract( years => $cat_from->upperagelimit);
             $search_params->{dateofbirth}{'<'} = $dtf->format_datetime( $date_before );
         }
